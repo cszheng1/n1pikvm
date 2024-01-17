@@ -17,6 +17,37 @@ dr_mode = "host";
 ```
 把 host 模式修改为 peripheral 模式，开启 n1 的 otg 功能。
 ```
+```
+		usb@d0078080 {
+			compatible = "amlogic,meson-gxl-usb-ctrl";
+			reg = <0x00 0xd0078080 0x00 0x20>;
+			interrupts = <0x00 0x10 0x04>;
+			#address-cells = <0x02>;
+			#size-cells = <0x02>;
+			ranges;
+			clocks = <0x03 0x37 0x03 0x40>;
+			clock-names = "usb_ctrl\0ddr";
+			resets = <0x11 0x22>;
+			dr_mode = "peripheral";
+			phys = <0x3b 0x3c>;
+			phy-names = "usb2-phy0\0usb2-phy1";
+			status = "okay";
+			phandle = <0xa7>;
+
+			usb@c9100000 {
+				compatible = "amlogic,meson-g12a-usb\0snps,dwc2";
+				reg = <0x00 0xc9100000 0x00 0x40000>;
+				interrupts = <0x00 0x1f 0x04>;
+				clocks = <0x03 0x33>;
+				clock-names = "otg";
+				phys = <0x3c>;
+				dr_mode = "peripheral";
+				g-rx-fifo-size = <0xc0>;
+				g-np-tx-fifo-size = <0x80>;
+				g-tx-fifo-size = <0x80 0x80 0x10 0x10 0x10>;
+				phandle = <0xa8>;
+			};
+```
 peripheral
 ```
 编译回设备树二进制
