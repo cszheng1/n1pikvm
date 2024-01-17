@@ -17,6 +17,8 @@ dr_mode = "host";
 ```
 把 host 模式修改为 peripheral 模式，开启 n1 的 otg 功能。
 ```
+peripheral
+```
 ```
 		usb@d0078080 {
 			compatible = "amlogic,meson-gxl-usb-ctrl";
@@ -48,8 +50,7 @@ dr_mode = "host";
 				phandle = <0xa8>;
 			};
 ```
-peripheral
-```
+
 编译回设备树二进制
 ```
 dtc -I dts -O dtb -o n1.dtb n1.dts
